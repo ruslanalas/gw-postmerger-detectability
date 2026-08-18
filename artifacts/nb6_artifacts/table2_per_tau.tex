@@ -1,0 +1,17 @@
+\begin{table*}[htbp]
+    \centering
+    \caption{Per-tau breakdown on \texttt{test\_block}: Stage-1 pass rate and Stage-2 conditional flag rate for each method, with Wilson 95\% confidence intervals. For anomalous $\tau$, the flag rate is a recall (higher is better); for standard $\tau$, it is a false-flag rate (lower is better).}
+    \label{tab:per_tau}
+    \begin{tabular}{@{}llllll@{}}
+        \toprule
+        $\boldsymbol{\tau}$ \textbf{(ms)} & \textbf{Class} & \textbf{Stage-1 pass rate} & \textbf{LSQ flag rate} & \textbf{Ridge flag rate} & \textbf{Power flag rate} \\
+        \midrule
+        1 & anomalous & 0.987 [0.966, 0.995] & 0.932 [0.898, 0.956] & 0.736 [0.684, 0.783] & 0.054 [0.034, 0.086] \\
+        3 & anomalous & 0.997 [0.981, 0.999] & 0.826 [0.779, 0.865] & 0.237 [0.193, 0.289] & 0.054 [0.033, 0.085] \\
+        5 & standard & 0.973 [0.948, 0.986] & 0.041 [0.024, 0.070] & 0.024 [0.012, 0.049] & 0.021 [0.009, 0.044] \\
+        10 & standard & 0.937 [0.903, 0.959] & 0.000 [0.000, 0.013] & 0.014 [0.006, 0.036] & 0.011 [0.004, 0.031] \\
+        20 & standard & 0.853 [0.809, 0.889] & 0.000 [0.000, 0.015] & 0.008 [0.002, 0.028] & 0.004 [0.001, 0.022] \\
+        40 & standard & 0.663 [0.608, 0.714] & 0.000 [0.000, 0.019] & 0.015 [0.005, 0.043] & 0.000 [0.000, 0.019] \\
+        \bottomrule
+    \end{tabular}
+\end{table*}

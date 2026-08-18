@@ -1,0 +1,8 @@
+{
+ "auc_power_pos": 0.2753788741395902,
+ "auc_power_neg": 0.7246211258604097,
+ "best_power_auc": 0.7246211258604097,
+ "auc_power_logistic": 0.7246211258604097,
+ "ridge (tau_hat, inverted)": 0.9151481022637684,
+ "lsq (tau_hat, inverted)": 0.9341754391120057
+}

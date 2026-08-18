@@ -1,0 +1,50 @@
+[
+ {
+  "method": "ridge",
+  "mode": "conditional",
+  "tpr": 0.454855195911414,
+  "fpr": 0.010679611650485437,
+  "n_anom": 587,
+  "n_std": 1030
+ },
+ {
+  "method": "ridge",
+  "mode": "end_to_end",
+  "tpr": 0.445,
+  "fpr": 0.009166666666666667,
+  "n_anom": 600,
+  "n_std": 1200
+ },
+ {
+  "method": "lsq",
+  "mode": "conditional",
+  "tpr": 0.8194207836456558,
+  "fpr": 0.010679611650485437,
+  "n_anom": 587,
+  "n_std": 1030
+ },
+ {
+  "method": "lsq",
+  "mode": "end_to_end",
+  "tpr": 0.8016666666666666,
+  "fpr": 0.009166666666666667,
+  "n_anom": 600,
+  "n_std": 1200
+ },
+ {
+  "method": "power",
+  "mode": "conditional",
+  "tpr": 0.0,
+  "fpr": 0.0,
+  "n_anom": 587,
+  "n_std": 1030
+ },
+ {
+  "method": "power",
+  "mode": "end_to_end",
+  "tpr": 0.0,
+  "fpr": 0.0,
+  "n_anom": 600,
+  "n_std": 1200
+ }
+]

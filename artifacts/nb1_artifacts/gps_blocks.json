@@ -1,0 +1,26 @@
+{
+  "psd_block": {
+    "name": "psd_block",
+    "start": 1186573282.0,
+    "end": 1186575330.0,
+    "duration": 2048.0
+  },
+  "calib_block": {
+    "name": "calib_block",
+    "start": 1186575338.0,
+    "end": 1186576362.0,
+    "duration": 1024.0
+  },
+  "train_block": {
+    "name": "train_block",
+    "start": 1186576370.0,
+    "end": 1186577394.0,
+    "duration": 1024.0
+  },
+  "test_block": {
+    "name": "test_block",
+    "start": 1186577402.0,
+    "end": 1186578426.0,
+    "duration": 1024.0
+  }
+}

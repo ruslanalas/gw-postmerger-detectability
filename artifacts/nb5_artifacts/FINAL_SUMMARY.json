@@ -1,0 +1,281 @@
+{
+  "frozen_config_used": {
+    "_meta": {
+      "status": "FROZEN",
+      "description": "Frozen Stage-1 + Stage-2 design for the detectability-aware post-merger GW anomaly screening project. Loaded exactly by Notebook5_Final_TestBlock_Evaluation.ipynb -- no threshold, model, hyperparameter, or preprocessing choice in that notebook may be changed based on test_block results.",
+      "spec_reference": "PROJECT_SPEC.md, Sec. 10-11"
+    },
+    "stage1": {
+      "score": "norm_lambda1",
+      "threshold": 55.6439,
+      "alpha": 0.01,
+      "calibration_pool": "calib_block",
+      "note": "Threshold value confirmed identical across two independent re-derivations (Notebook 4 and Notebook 4.5)."
+    },
+    "stage2_primary": {
+      "method": "nonlinear_lsq_tau_hat",
+      "description": "Nonlinear damped-sinusoid least-squares fit (scipy.optimize.curve_fit) on the whitened time-domain window.",
+      "anomaly_threshold_ms": 3.472,
+      "decision_rule": "flag anomalous if tau_hat_lsq_ms < anomaly_threshold_ms",
+      "fit_pool": "stage2_calib"
+    },
+    "stage2_secondary": {
+      "method": "ridge_energy_decay_tau_hat",
+      "description": "Time-frequency ridge/energy-decay fit on band-restricted CQT frame power, adaptive noise-floor-truncated fit window. No further tuning permitted (frozen as of Notebook 4.5).",
+      "anomaly_threshold_ms": 4.365,
+      "decision_rule": "flag anomalous if tau_hat_ridge_ms < anomaly_threshold_ms",
+      "fit_pool": "stage2_calib",
+      "estimator_params": {
+        "fit_max_frames": 60,
+        "min_frames_for_fit": 4,
+        "patience": 2,
+        "noise_floor_stop_percentile": 90.0,
+        "noise_floor_value": 274565.08,
+        "noise_floor_calibration_pool": "calib_block"
+      }
+    },
+    "power_baseline": {
+      "description": "Logistic regression on total_power_raw (in-band CQT power, [1500,4000]Hz) alone, fit on stage2_calib only.",
+      "fit_pool": "stage2_calib",
+      "operating_threshold_probability": 0.3656,
+      "decision_rule": "flag anomalous if predicted P(anomalous) > operating_threshold_probability",
+      "report_alongside": [
+        "AUC(power)",
+        "AUC(-power)",
+        "AUC(logistic)",
+        "low-FPR operating-point TPR/FPR"
+      ],
+      "interpretation": "weaker and direction-sensitive, not uninformative -- do not report AUC(power) alone; always pair with the operating-point TPR/FPR",
+      "note": "Regression coefficients are not hardcoded here (never persisted as raw numbers); re-derived deterministically from stage2_calib in Notebook 5 and the resulting operating threshold is asserted to match the value above."
+    },
+    "cqt_config": {
+      "fmin_hz": 500.0,
+      "n_bins": 48,
+      "bins_per_octave": 12,
+      "hop_length": 8,
+      "band_low_hz": 1500.0,
+      "band_high_hz": 4000.0
+    },
+    "graph_config": {
+      "freq_radius": 2,
+      "time_radius": 2
+    },
+    "whitening_config": {
+      "f_low_hz": 20.0,
+      "f_high_hz": 6000.0,
+      "edge_trim_s": 4.0,
+      "fs_hz": 16384,
+      "window_dur_s": 0.1
+    },
+    "evaluation_grid": {
+      "tau_grid_ms": [
+        1,
+        3,
+        5,
+        10,
+        20,
+        40
+      ],
+      "standard_taus_ms": [
+        5,
+        10,
+        20,
+        40
+      ],
+      "anomalous_taus_ms": [
+        1,
+        3
+      ],
+      "snr_grid": [
+        8,
+        10,
+        12,
+        15,
+        20
+      ]
+    },
+    "excluded_from_v1": [
+      "simple_cnn",
+      "ast_mahalanobis"
+    ],
+    "explanatory_only_not_load_bearing": {
+      "band_leakage_diagnostic": "Inconclusive (Notebook 4.5 Sec. 8) -- narrow/full-passband power ratio does not cleanly separate by tau. Must not be used to justify, adjust, or interpret any threshold above."
+    },
+    "rules": [
+      "test_block may only be loaded in Notebook5_Final_TestBlock_Evaluation.ipynb.",
+      "No threshold, model, hyperparameter, or preprocessing choice may be changed based on test_block results.",
+      "No further ridge estimator tuning is permitted.",
+      "If test_block performance is worse than the stage2_val held-out validation, report it honestly -- do not tune to close the gap."
+    ]
+  },
+  "test_block_n_total": 1800,
+  "test_block_n_stage1_pass": 1623,
+  "test_block_stage1_pass_rate": 0.9016666666666666,
+  "stage1_pass_rate_by_tau": {
+    "1": 0.9866666666666667,
+    "3": 0.9966666666666667,
+    "5": 0.9733333333333334,
+    "10": 0.9366666666666666,
+    "20": 0.8533333333333334,
+    "40": 0.6633333333333333
+  },
+  "conditional_and_endtoend_metrics": [
+    {
+      "method": "ridge",
+      "mode": "conditional",
+      "tpr": 0.4857142857142857,
+      "fpr": 0.01556420233463035,
+      "n_anom": 595,
+      "n_std": 1028
+    },
+    {
+      "method": "ridge",
+      "mode": "end_to_end",
+      "tpr": 0.4816666666666667,
+      "fpr": 0.013333333333333334,
+      "n_anom": 600,
+      "n_std": 1200
+    },
+    {
+      "method": "lsq",
+      "mode": "conditional",
+      "tpr": 0.8789915966386554,
+      "fpr": 0.011673151750972763,
+      "n_anom": 595,
+      "n_std": 1028
+    },
+    {
+      "method": "lsq",
+      "mode": "end_to_end",
+      "tpr": 0.8716666666666667,
+      "fpr": 0.01,
+      "n_anom": 600,
+      "n_std": 1200
+    },
+    {
+      "method": "power",
+      "mode": "conditional",
+      "tpr": 0.05378151260504202,
+      "fpr": 0.009727626459143969,
+      "n_anom": 595,
+      "n_std": 1028
+    },
+    {
+      "method": "power",
+      "mode": "end_to_end",
+      "tpr": 0.05333333333333334,
+      "fpr": 0.008333333333333333,
+      "n_anom": 600,
+      "n_std": 1200
+    }
+  ],
+  "per_tau_flag_rates": {
+    "ridge": {
+      "1": 0.7364864864864865,
+      "3": 0.23745819397993312,
+      "5": 0.023972602739726026,
+      "10": 0.014234875444839857,
+      "20": 0.0078125,
+      "40": 0.01507537688442211
+    },
+    "lsq": {
+      "1": 0.9324324324324325,
+      "3": 0.8260869565217391,
+      "5": 0.0410958904109589,
+      "10": 0.0,
+      "20": 0.0,
+      "40": 0.0
+    },
+    "power": {
+      "1": 0.05405405405405406,
+      "3": 0.05351170568561873,
+      "5": 0.02054794520547945,
+      "10": 0.010676156583629894,
+      "20": 0.00390625,
+      "40": 0.0
+    }
+  },
+  "auc_results": {
+    "ridge (tau_hat, inverted)": 0.9296485435076133,
+    "lsq (tau_hat, inverted)": 0.9428329992532327,
+    "power (AUC(power))": 0.2744531275545237,
+    "power (AUC(-power))": 0.7255468724454763,
+    "power (AUC(logistic))": 0.7255468724454763
+  },
+  "operating_point_results": {
+    "ridge": {
+      "tpr": 0.4857142857142857,
+      "fpr": 0.01556420233463035
+    },
+    "lsq": {
+      "tpr": 0.8789915966386554,
+      "fpr": 0.011673151750972763
+    },
+    "power": {
+      "tpr": 0.05378151260504202,
+      "fpr": 0.009727626459143969
+    }
+  },
+  "comparison_to_stage2_val": [
+    {
+      "metric": "ridge AUC",
+      "stage2_val": 0.915,
+      "test_block": 0.9296485435076133,
+      "delta": 0.014648543507613243
+    },
+    {
+      "metric": "lsq AUC",
+      "stage2_val": 0.934,
+      "test_block": 0.9428329992532327,
+      "delta": 0.008832999253232665
+    },
+    {
+      "metric": "ridge conditional TPR",
+      "stage2_val": 0.472,
+      "test_block": 0.4857142857142857,
+      "delta": 0.013714285714285734
+    },
+    {
+      "metric": "ridge conditional FPR",
+      "stage2_val": 0.01,
+      "test_block": 0.01556420233463035,
+      "delta": 0.00556420233463035
+    },
+    {
+      "metric": "lsq conditional TPR",
+      "stage2_val": 0.835,
+      "test_block": 0.8789915966386554,
+      "delta": 0.043991596638655484
+    },
+    {
+      "metric": "lsq conditional FPR",
+      "stage2_val": 0.017,
+      "test_block": 0.011673151750972763,
+      "delta": -0.005326848249027238
+    },
+    {
+      "metric": "power_operating conditional TPR",
+      "stage2_val": 0.043,
+      "test_block": 0.05378151260504202,
+      "delta": 0.010781512605042023
+    },
+    {
+      "metric": "power_operating conditional FPR",
+      "stage2_val": 0.012,
+      "test_block": 0.009727626459143969,
+      "delta": -0.0022723735408560312
+    },
+    {
+      "metric": "tau=1ms flag rate",
+      "stage2_val": 0.704,
+      "test_block": 0.7364864864864865,
+      "delta": 0.032486486486486554
+    },
+    {
+      "metric": "tau=3ms flag rate",
+      "stage2_val": 0.242,
+      "test_block": 0.23745819397993312,
+      "delta": -0.004541806020066874
+    }
+  ]
+}

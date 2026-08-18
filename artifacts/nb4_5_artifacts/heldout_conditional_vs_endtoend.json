@@ -1,0 +1,66 @@
+[
+ {
+  "method": "ridge",
+  "mode": "conditional",
+  "tpr": 0.4720812182741117,
+  "fpr": 0.010130246020260492,
+  "n_anom": 394,
+  "n_std": 691
+ },
+ {
+  "method": "ridge",
+  "mode": "end_to_end",
+  "tpr": 0.465,
+  "fpr": 0.00875,
+  "n_anom": 400,
+  "n_std": 800
+ },
+ {
+  "method": "lsq",
+  "mode": "conditional",
+  "tpr": 0.8350253807106599,
+  "fpr": 0.017366136034732273,
+  "n_anom": 394,
+  "n_std": 691
+ },
+ {
+  "method": "lsq",
+  "mode": "end_to_end",
+  "tpr": 0.8225,
+  "fpr": 0.015,
+  "n_anom": 400,
+  "n_std": 800
+ },
+ {
+  "method": "power_default",
+  "mode": "conditional",
+  "tpr": 0.0,
+  "fpr": 0.0,
+  "n_anom": 394,
+  "n_std": 691
+ },
+ {
+  "method": "power_default",
+  "mode": "end_to_end",
+  "tpr": 0.0,
+  "fpr": 0.0,
+  "n_anom": 400,
+  "n_std": 800
+ },
+ {
+  "method": "power_operating",
+  "mode": "conditional",
+  "tpr": 0.04314720812182741,
+  "fpr": 0.011577424023154847,
+  "n_anom": 394,
+  "n_std": 691
+ },
+ {
+  "method": "power_operating",
+  "mode": "end_to_end",
+  "tpr": 0.0425,
+  "fpr": 0.01,
+  "n_anom": 400,
+  "n_std": 800
+ }
+]

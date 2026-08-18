@@ -1,0 +1,7 @@
+method,mode,tpr,fpr,auc,notes
+Ridge/energy-decay,conditional,"0.486 [0.446, 0.526]","0.016 [0.010, 0.025]",0.930,"TF-native, interpretable, secondary Stage-2 method"
+Ridge/energy-decay,end_to_end,"0.482 [0.442, 0.522]","0.013 [0.008, 0.022]",--,
+Nonlinear LSQ,conditional,"0.879 [0.850, 0.903]","0.012 [0.007, 0.020]",0.943,Strongest Stage-2 discriminator (primary)
+Nonlinear LSQ,end_to_end,"0.872 [0.843, 0.896]","0.010 [0.006, 0.017]",--,
+Power (calibrated logistic),conditional,"0.054 [0.038, 0.075]","0.010 [0.005, 0.018]",0.726,"Weaker, direction-sensitive baseline; AUC(power)=0.274, AUC(-power)=0.726"
+Power (calibrated logistic),end_to_end,"0.053 [0.038, 0.074]","0.008 [0.005, 0.015]",--,
