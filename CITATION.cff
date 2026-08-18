@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software or methodology, please cite it as below."
+type: software
+title: >-
+  Detectability-Aware Screening of Post-Merger Gravitational-Wave Damping
+  Anomalies in Real Detector Noise: A Graph-Spectral Approach with Empirical
+  Null Calibration
+authors:
+  - family-names: Alaskarov
+    given-names: Ruslan
+    orcid: "https://orcid.org/0009-0006-1030-3031"
+    email: ruslanalas@gmail.com
+    affiliation: Independent Researcher
+version: 1.0.0
+date-released: "2026-08-18"
+doi: 10.5281/zenodo.21993621
+url: "https://github.com/ruslanalas/gw-postmerger-detectability"
+repository-code: "https://github.com/ruslanalas/gw-postmerger-detectability"
+license: MIT
+keywords:
+  - gravitational waves
+  - post-merger
+  - binary neutron star
+  - anomaly detection
+  - graph-spectral methods
+  - random matrix theory
+  - LIGO
+preferred-citation:
+  type: article
+  title: >-
+    Detectability-Aware Screening of Post-Merger Gravitational-Wave Damping
+    Anomalies in Real Detector Noise: A Graph-Spectral Approach with Empirical
+    Null Calibration
+  authors:
+    - family-names: Alaskarov
+      given-names: Ruslan
+      orcid: "https://orcid.org/0009-0006-1030-3031"
+  year: 2026
+  doi: 10.5281/zenodo.21993621

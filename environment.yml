@@ -1,0 +1,16 @@
+name: gw-postmerger-detectability
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - numpy
+  - scipy
+  - matplotlib
+  - scikit-learn
+  - jupyter
+  - ipykernel
+  - pip
+  - pip:
+      - librosa
+      - gwpy
+      - gwosc

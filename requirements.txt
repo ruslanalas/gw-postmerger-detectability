@@ -1,0 +1,20 @@
+# Core dependencies actually imported across Notebooks 1-6 (verified by grep against every notebook's
+# code cells, not assumed). See docs/reproduction.md for which notebook uses which package.
+numpy
+scipy
+matplotlib
+scikit-learn
+librosa
+gwpy
+gwosc
+
+# Needed to run the .ipynb files themselves in a local (non-Colab) environment. Not imported inside any
+# notebook cell, but required to open/execute the notebooks at all.
+jupyter
+ipykernel
+
+# --- Packages NOT included, and why ---
+# pandas, h5py, tqdm: none of these are actually imported anywhere in Notebooks 1-6. They were in an
+# earlier suggested list but are not used by this codebase; omitted deliberately rather than added
+# speculatively. If a future notebook adds a real dependency on one of these, add it here explicitly
+# rather than restoring this comment.
