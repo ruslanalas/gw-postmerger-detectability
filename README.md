@@ -21,8 +21,7 @@ high-frequency transients are easy to confuse with instrumental glitches, and pa
 detector noise does not behave like the clean, idealized noise most detection-threshold formulas assume.
 
 This project builds and tests a two-stage screening pipeline for a simplified
-("toy") version of that signal, injected directly into real LIGO data, with every threshold calibrated
-empirically on real noise and frozen before a single final, held-out evaluation.
+("toy") version of that signal, injected directly into real LIGO data.
 
 
 
@@ -41,8 +40,7 @@ real LIGO L1 noise
 **Stage 1 — graph-spectral detectability gate.** Each candidate window's whitened Constant-Q
 representation is turned into a local time-frequency coherence graph; the leading eigenvalue of that
 graph (`norm_lambda1`) is used as a detectability statistic, with its null distribution calibrated
-empirically on real L1 noise rather than assumed from a closed-form Gaussian model (validated directly:
-real noise does *not* satisfy that assumption — see Notebook 2).
+empirically on real L1 noise.
 
 **Stage 2 — damping-time scoring.** For candidates that pass Stage 1, an effective damping time
 $\hat\tau$ is estimated two independent ways — a classical nonlinear least-squares fit (primary) and an
@@ -50,9 +48,9 @@ interpretable, time-frequency-native ridge/energy-decay fit (secondary) — and 
 threshold calibrated on the standard ($\tau=5$–$40$~ms) damping-time manifold. A calibrated total-power
 logistic-regression baseline is included for comparison.
 
-Every threshold, model, and hyperparameter governing the final evaluation is recorded exactly in
-[`frozen_config.json`](frozen_config.json) and was fixed *before* the held-out test segment was ever
-loaded.
+Every threshold, model, and hyperparameter governing the final evaluation is recorded  in
+[`frozen_config.json`](frozen_config.json).
+
 
 ## Final frozen `test_block` results
 
@@ -155,11 +153,11 @@ If you use this code or methodology, please cite via [`CITATION.cff`](CITATION.c
 
 Full details in [`docs/notes_on_limitations.md`](docs/notes_on_limitations.md). In brief:
 
-- The injected signal is a **single-mode toy waveform**, not a physically complete post-merger model.
-- **LIGO Livingston (L1) only** — no multi-detector coincidence.
-- Reported false-positive rates are **finite-sample false-flag rates on constructed windows**, not a
+- The injected signal is a single-mode toy waveform, not a physically complete post-merger model.
+- LIGO Livingston (L1) only — no multi-detector coincidence.
+- Reported false-positive rates are finite-sample false-flag rates on constructed windows, not a
   production search's false-alarm rate calibrated over months/years of background.
-- $\hat\tau$ is validated as an **anomaly-ranking score**, not as a precise point estimate of the true
+- $\hat\tau$ is validated as an anomaly-ranking score, not as a precise point estimate of the true
   physical damping time.
 
 
