@@ -6,10 +6,8 @@ This repository contains the full code, notebooks, frozen configuration, and man
 proof-of-concept pipeline that screens synthetic post-merger gravitational-wave-like transients,
 injected into real LIGO Livingston (L1) noise, for anomalously short damping times.
 
-> **This is a methodology proof-of-concept, not a detection claim.** No gravitational-wave signal has
-> been detected. No evidence for dark matter or dark-sector physics is presented or claimed anywhere in
-> this work. See [Limitations](#limitations) below and `docs/notes_on_limitations.md` for the full,
-> explicit list of what this project does *not* claim.
+> **This is a methodology proof-of-concept.** 
+> See [Limitations](#limitations) below and `docs/notes_on_limitations.md`.
 
 ---
 
@@ -22,7 +20,7 @@ unusually quickly. Finding such a signal in real detector noise is hard, partly 
 high-frequency transients are easy to confuse with instrumental glitches, and partly because real
 detector noise does not behave like the clean, idealized noise most detection-threshold formulas assume.
 
-This project builds and rigorously validates a two-stage screening pipeline for a simplified
+This project builds and tests a two-stage screening pipeline for a simplified
 ("toy") version of that signal, injected directly into real LIGO data, with every threshold calibrated
 empirically on real noise and frozen *before* a single final, held-out evaluation.
 
@@ -90,7 +88,7 @@ gw-postmerger-detectability/
 ├── CITATION.cff
 ├── requirements.txt
 ├── environment.yml              # optional conda equivalent
-├── frozen_config.json           # canonical, machine-readable frozen design (single source of truth)
+├── frozen_config.json           # configuration used for the final evaluation
 ├── PROJECT_SPEC.md              # full project history, terminology, forbidden claims, known issues
 │
 ├── notebooks/                   # run in this order -- see docs/reproduction.md
