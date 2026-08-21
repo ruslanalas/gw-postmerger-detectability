@@ -89,7 +89,6 @@ gw-postmerger-detectability/
 ├── requirements.txt
 ├── environment.yml              # optional conda equivalent
 ├── frozen_config.json           # configuration used for the final evaluation
-├── PROJECT_SPEC.md              # full project history, terminology, forbidden claims, known issues
 │
 ├── notebooks/                   # run in this order -- see docs/reproduction.md
 │   ├── Notebook1_Data_PSD_Whitening.ipynb
