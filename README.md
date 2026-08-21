@@ -11,7 +11,7 @@ injected into real LIGO Livingston (L1) noise, for anomalously short damping tim
 
 ---
 
-## Plain-language summary
+## Summary
 
 Neutron star mergers may briefly leave behind a hot, rapidly oscillating remnant before collapsing to a
 black hole or settling into a stable star. If this remnant loses energy faster than expected — for
@@ -22,17 +22,9 @@ detector noise does not behave like the clean, idealized noise most detection-th
 
 This project builds and tests a two-stage screening pipeline for a simplified
 ("toy") version of that signal, injected directly into real LIGO data, with every threshold calibrated
-empirically on real noise and frozen *before* a single final, held-out evaluation.
+empirically on real noise and frozen before a single final, held-out evaluation.
 
-## Scientific motivation
 
-Post-merger gravitational-wave emission from binary neutron star coalescences may probe matter at
-extreme densities, and deviations in the effective damping time have been proposed as phenomenological
-probes of non-standard energy-loss channels. This project does not model that physics in detail — it
-uses a single-mode damped sinusoid as a deliberately minimal proxy signal — and instead focuses on
-building and validating the *statistical methodology* needed to screen for such anomalies in real,
-non-Gaussian, non-stationary detector noise. See the manuscript (`manuscript/main.tex`) for the full
-scientific framing, related work, and citations.
 
 ## Pipeline overview
 
@@ -121,7 +113,7 @@ in `docs/reproduction.md` — large raw arrays belong on the Zenodo archive, not
 
 See [`docs/reproduction.md`](docs/reproduction.md) for the full walkthrough. In short: run the notebooks
 in the numbered order above, in Google Colab or a local Jupyter environment with the packages in
-`requirements.txt` installed. **`test_block` must never be loaded before Notebook 5**, and no threshold
+`requirements.txt` installed. `test_block` must never be loaded before Notebook 5, and no threshold
 in `frozen_config.json` may be changed after Notebook 5 has run — both rules are enforced in code
 (assertions), not just convention.
 
@@ -130,13 +122,7 @@ in `frozen_config.json` may be changed after Notebook 5 has run — both rules a
 See [`requirements.txt`](requirements.txt). Core dependencies: `numpy`, `scipy`, `matplotlib`,
 `scikit-learn`, `librosa`, `gwpy`, `gwosc`.
 
-## Runtime notes
 
-All notebooks were developed and run on Google Colab (standard CPU runtime, no GPU required). Notebook 3
-(null calibration + phase-diagram sweep) and Notebook 4.5/5 (calibration re-derivation + evaluation
-sweep) are the most compute-intensive, each taking on the order of several minutes to tens of minutes
-depending on the exact sample-size settings used (`N_CALIBRATION`, `N_PER_CELL` — see each notebook's own
-config cell).
 
 ## Data source
 
@@ -144,11 +130,6 @@ All real detector data is LIGO Livingston (L1) strain, fetched at runtime from t
 [Gravitational Wave Open Science Center](https://www.gw-openscience.org) via `gwpy`/`gwosc` — no raw
 strain data is stored in this repository.
 
-## Manuscript
-
-The full manuscript, including complete methodology, related-work discussion, and limitations, is in
-[`manuscript/main.tex`](manuscript/main.tex) (compile with `revtex4-2`, `aps`, `prd` style). A compiled
-PDF will be added here once available.
 
 ## Zenodo archive
 
@@ -180,18 +161,14 @@ Full details in [`docs/notes_on_limitations.md`](docs/notes_on_limitations.md). 
   production search's false-alarm rate calibrated over months/years of background.
 - $\hat\tau$ is validated as an **anomaly-ranking score**, not as a precise point estimate of the true
   physical damping time.
-- **No learned-classifier (CNN/AST) baseline** is included in this version.
-- Stage 1's statistic is validated as sensitive to local time-frequency organization beyond total power
-  — it is **not** validated as a measure of physical post-merger coherence specifically.
-- **No dark matter or dark-sector detection claim** is made anywhere in this work.
+
 
 ## Related, earlier prototype
 
 An earlier version of this project explored a frozen pretrained-audio-transformer approach. That
 framing was abandoned after technical review (see the manuscript's Introduction for why) and is preserved
 only for historical transparency at
-[`gw-postmerger-ast`](https://github.com/ruslanalas/gw-postmerger-ast) — **it is not the current or
-recommended version of this project.**
+[`gw-postmerger-ast`](https://github.com/ruslanalas/gw-postmerger-ast) 
 
 ## License
 
